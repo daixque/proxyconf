@@ -27,8 +27,8 @@ def update_bashconfig
   bash_rc = "#{HOME}/.bashrc"
   filepath = if File.exist?(bash_profile)
     bash_profile
-  elsif File.exist?(bash_profile)
-    bash_profile
+  elsif File.exist?(bash_rc)
+    bash_rc
   end
   if filepath
     File.open(filepath, 'a') do |file|
