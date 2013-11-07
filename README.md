@@ -1,24 +1,28 @@
-# Proxyconf
+# proxyconf
 
-TODO: Write a gem description
+proxyconf is a proxy switcher for terminal.
+
+proxyconf currently supports Mac only.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'proxyconf'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+First, install proxyconf via gem.
 
     $ gem install proxyconf
 
+Second, setup using proxyconf-setup command
+
+    $ proxyconf-setup
+
+then it creates ~/.proxyconf directory and append setting for proxyconf into your ~/.bash_profile.
+
 ## Usage
 
-TODO: Write usage instructions here
+Simply type proxyconf in your terminal.
+
+    $ proxyconf
+
+Then proxyconf exports environment variable 'http_proxy', 'https_proxy' and 'ftp_proxy' based on your system preference.
 
 ## Contributing
 

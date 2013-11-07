@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["daixque"]
   spec.email         = ["daixque@gmail.com"]
   spec.description   = %q{proxyconf configurates proxy setting of terminal.}
-  spec.summary       = %q{proxy changer for terminal}
+  spec.summary       = %q{proxy switcher for terminal}
   spec.homepage      = ""
   spec.license       = "MIT"
 
