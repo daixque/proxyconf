@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+HOME = File.expand_path('~')
+PROXYCONF_HOME = "#{HOME}/.proxyconf"
+
+# copy template files into ~/.proxyconf
+def create_proxyconf_home
+  FileUtils.mkdir_p PROXYCONF_HOME
+  template_path = File.join(File.dirname(__FILE__), '../template')
+  src = [
+    File.join(template_path, "proxyconf"),
+    File.join(template_path, "proxies")
+  ]
+  FileUtils.cp_r(src, PROXYCONF_HOME)
+end
+
+def write_proxyconf_setting(file)
+  file.puts
+  file.puts '[[ -s "$HOME/.proxyconf/proxyconf" ]] && source "$HOME/.proxyconf/proxyconf"'
+end
+
+# add proxyconf setting into .bash_profile or .bashrc
+def update_bashconfig
+  bash_profile = "#{HOME}/.bash_profile"
+  bash_rc = "#{HOME}/.bashrc"
+  filepath = if File.exist?(bash_profile)
+    bash_profile
+  elsif File.exist?(bash_profile)
+    bash_profile
+  end
+  if filepath
+    File.open(filepath, 'a') do |file|
+      write_proxyconf_setting file
+    end
+  end
+end
+
+def setup
+  create_proxyconf_home
+  update_bashconfig
+end
+
+setup

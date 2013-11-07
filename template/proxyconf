@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+PROXYCONF_CMD=proxyconf-core
+PROXYCONF_HOME=~/.proxyconf
+
+__proxyconf_usage ()
+{
+  cat <<EOF
+usage:
+  $ proxyconf [command]
+
+  if command is not given, 'update' command will used.
+
+commands:
+  update
+    update proxy setting for active network service.
+  help
+    show usage
+EOF
+}
+
+__proxyconf_use ()
+{
+  . $PROXYCONF_HOME/proxies/$1
+  echo "set proxy:" $http_proxy
+
+}
+
+__proxyconf_update ()
+{
+  $PROXYCONF_CMD export > $PROXYCONF_HOME/proxies/current
+  __proxyconf_use current
+}
+
+proxyconf ()
+{
+  case $1 in
+    "")       __proxyconf_update ;;
+    "update") __proxyconf_update ;;
+    "help")   __proxyconf_usage ;;
+    * )
+      echo "unknown command:" $1
+      echo "type 'proxyconf help' to show usage";;
+  esac
+}
