@@ -1,7 +1,7 @@
 require 'yaml'
 
 module ProxyConf
-  class Mac
+  class Mac < ProxyConf::Engine
     private
 
     def scutil_query(key)

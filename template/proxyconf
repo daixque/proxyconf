@@ -16,6 +16,16 @@ commands:
     update proxy setting for active network service.
   help
     show usage
+  add name proxy
+    add proxy setting into ~/.proxyconf/proxies
+  remove name
+    remove proxy specified by name
+  info name
+    show proxy setting for specifed name
+  list
+    list all proxy settings
+  use name
+    update proxy setting specified by name
 EOF
 }
 
@@ -32,12 +42,23 @@ __proxyconf_update ()
   __proxyconf_use current
 }
 
+__proxyconf_deligate ()
+{
+  $PROXYCONF_CMD $*
+}
+
 proxyconf ()
 {
   case $1 in
     "")       __proxyconf_update ;;
     "update") __proxyconf_update ;;
     "help")   __proxyconf_usage ;;
+    "add")    __proxyconf_deligate $* ;;
+    "remove") __proxyconf_deligate $* ;;
+    "info")   __proxyconf_deligate $* ;;
+    "list")   __proxyconf_deligate $* ;;
+    "use")    __proxyconf_use $2 ;;
+    "-v")     $PROXYCONF_CMD version ;;
     * )
       echo "unknown command:" $1
       echo "type 'proxyconf help' to show usage";;
