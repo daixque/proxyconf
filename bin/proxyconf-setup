@@ -5,12 +5,23 @@ require 'fileutils'
 HOME = File.expand_path('~')
 PROXYCONF_HOME = "#{HOME}/.proxyconf"
 
+def create_proxyconf_sh
+  target = File.join(File.expand_path(File.dirname(__FILE__)), "script/proxyconf")
+  link = File.join(PROXYCONF_HOME, "proxyconf")
+  if File.exist?(link)
+    File.delete link
+  elsif File.symlink? link
+    File.unlink link
+  end
+  File.symlink(target, link)
+end
+
 # copy template files into ~/.proxyconf
 def create_proxyconf_home
   FileUtils.mkdir_p PROXYCONF_HOME
+  create_proxyconf_sh
   template_path = File.join(File.dirname(__FILE__), '../template')
   src = [
-    File.join(template_path, "proxyconf"),
     File.join(template_path, "proxies")
   ]
   FileUtils.cp_r(src, PROXYCONF_HOME)
@@ -42,4 +53,16 @@ def setup
   update_bashconfig
 end
 
-setup
+def update
+  create_proxyconf_sh
+end
+
+subcommand = ARGV[0]
+case subcommand
+when nil
+  setup
+when 'update'
+  update
+else
+  puts "unknown subcommand: #{subcommand}"
+end
