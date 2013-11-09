@@ -17,11 +17,6 @@ module ProxyConf
       puts engine.active_network
     end
 
-    desc 'test', 'test'
-    def proxy_info
-      puts engine.proxy_info
-    end
-
     private
     def engine
       self.class.engine

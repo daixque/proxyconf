@@ -11,7 +11,6 @@ get #{key}
 d.show
 close
       EOF
-      #return
       IO.popen("scutil", "r+") do |io|
         io.puts send_data
         io.close_write
