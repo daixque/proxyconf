@@ -31,7 +31,12 @@ EOF
 
 __proxyconf_use ()
 {
-  . $PROXYCONF_HOME/proxies/$1
+  target_proxy_file=$PROXYCONF_HOME/proxies/$1
+  if ! [[ -f $target_proxy_file ]] ; then
+    echo 'no such proxy name:' $1 >&2
+    exit 1
+  fi
+  . $target_proxy_file
   echo "set proxy:" $http_proxy
 
 }
