@@ -4,6 +4,7 @@ proxyconf is a proxy switcher for terminal.
 
 proxyconf currently supports Mac only.
 
+
 ## Installation
 
 First, install proxyconf via gem.
@@ -16,6 +17,15 @@ Second, setup using proxyconf-setup command
 
 then it creates ~/.proxyconf directory and append setting for proxyconf into your ~/.bash_profile.
 
+
+## Update from previous version
+
+If you use previous version of proxyconf, follow below to update.
+
+    $ gem update proxyconf
+    $ proxyconf-setup update
+
+
 ## Usage
 
 Simply type proxyconf in your terminal.
@@ -23,6 +33,29 @@ Simply type proxyconf in your terminal.
     $ proxyconf
 
 Then proxyconf exports environment variable 'http_proxy', 'https_proxy' and 'ftp_proxy' based on your system preference.
+
+If you want to other proxy, use 'add' and 'use' command.
+
+    $ proxyconf add other other.proxy.com:8080
+    $ proxyconf use other
+
+'add' command create new proxy setting, and 'use' command exports environment variables.
+You can check out proxy settings already added using 'list' and 'info' command.
+
+    $ proxyconf list
+    current
+    other
+    $ proxyconf info other
+    export http_proxy=other.proxy.com:8080
+    export ftp_proxy=other.proxy.com:8080
+    export https_proxy=other.proxy.com:8080
+
+You can remove proxy setting using 'remove' command.
+
+    $ proxyconf remove other
+    $ proxyconf list
+    current
+
 
 ## Contributing
 
