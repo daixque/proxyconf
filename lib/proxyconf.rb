@@ -13,7 +13,12 @@ unless File.exist? proxies_dir_path
   exit 1
 end
 
-if true
+case RbConfig::CONFIG['host_os']
+when /darwin/
+  # MacOSX
   require "proxyconf/mac"
   ProxyConf::Cli.engine = ProxyConf::Mac.new
+else
+  puts 'your operating system is not supported, sorry.'
+  exit 1
 end
