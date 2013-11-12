@@ -17,6 +17,9 @@ Second, setup using proxyconf-setup command
     $ proxyconf-setup
 
 then it creates ~/.proxyconf directory and append setting for proxyconf into your ~/.bash_profile.
+You can use proxyconf command when you open new terminal, or type below to use immediately.
+
+    $ source "$HOME/.proxyconf/proxyconf"
 
 
 ## Update from previous version
@@ -25,6 +28,7 @@ If you use previous version of proxyconf, follow steps below to update.
 
     $ gem update proxyconf
     $ proxyconf-setup update
+    $ source "$HOME/.proxyconf/proxyconf"
 
 
 ## Usage
