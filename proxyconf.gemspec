@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = ProxyConf::VERSION
   spec.authors       = ["daixque"]
   spec.email         = ["daixque@gmail.com"]
-  spec.description   = %q{proxyconf configurates proxy setting of terminal.}
+  spec.description   = %q{proxyconf configurates proxy setting for terminal depends on System Preference.}
   spec.summary       = %q{proxy switcher for terminal}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/daixque/proxyconf"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
